@@ -20,6 +20,12 @@
 <description>Power Off Item</description>
 </key>
 
+<key name="remove-logout-button" type="b">
+<default>false</default>
+<summary>Turn ON if you wish to remove Logout Item from system's menu.</summary>
+<description>Logout Item</description>
+</key>
+
 <key name="remove-separator-1" type="b">
 <default>false</default>
 <summary>Turn ON if you wish to remove the separator-1.</summary>
