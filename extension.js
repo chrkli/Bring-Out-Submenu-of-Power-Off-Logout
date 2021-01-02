@@ -28,7 +28,7 @@ let boolean;
 var _bringOut = new Lang.Class({
     Name: "Bring Out Submenu Of Power Off/ Log Out",
     Extends: PanelMenu.SystemIndicator,
-//   
+// 
 _init: function() {
 	this._createMenu();
 	this._gsettingsChanged();
@@ -67,7 +67,7 @@ boolean = extSettings.get_boolean('remove-suspend-button');
 if (!boolean) { systemMenu.addMenuItem(suspend); };
 systemActions.bind_property('can-suspend', suspend, 'visible', bindFlags);
 	//Restart
-boolean = extSettings.get_boolean('remove-restart-button');	
+boolean = extSettings.get_boolean('remove-restart-button');
 if (!boolean) { systemMenu.addMenuItem(restart); };
 systemActions.bind_property('can-restart', restart, 'visible', bindFlags);
 	// Power
@@ -78,7 +78,9 @@ systemActions.bind_property('can-power-off', power, 'visible', bindFlags);
 boolean = extSettings.get_boolean('remove-separator-2');
 if (!boolean) { systemMenu.addMenuItem(separator2); };
 	// Logout
-systemMenu.addMenuItem(logout); systemActions.bind_property('can-logout', logout, 'visible', bindFlags);
+boolean = extSettings.get_boolean('remove-logout-button');
+if (!boolean) { systemMenu.addMenuItem(logout); };
+systemActions.bind_property('can-logout', logout, 'visible', bindFlags);
 	// Switch User
 systemMenu.addMenuItem(switchUser); systemActions.bind_property('can-switch-user', switchUser, 'visible', bindFlags);
 },
@@ -89,6 +91,7 @@ extSettings.connect("changed::remove-restart-button", this._takeAction.bind(this
 extSettings.connect("changed::remove-power-button", this._takeAction.bind(this));
 extSettings.connect("changed::remove-separator-1", this._takeAction.bind(this));
 extSettings.connect("changed::remove-separator-2", this._takeAction.bind(this));
+extSettings.connect("changed::remove-logout-button", this._takeAction.bind(this));
 },
 //
 destroy: function () {

@@ -74,7 +74,7 @@ function buildPrefsWidget() {
         'active',
         Gio.SettingsBindFlags.DEFAULT
     );
-    
+
     /////////////////////////////////////////////////////////////////////////////
 
     let labelPower = new Gtk.Label({
@@ -97,22 +97,45 @@ function buildPrefsWidget() {
         'active',
         Gio.SettingsBindFlags.DEFAULT
     );
-    
+
+    /////////////////////////////////////////////////////////////////////////////
+
+    let labelLogout = new Gtk.Label({
+        label: 'Remove Logut Button',
+        halign: Gtk.Align.START,
+        visible: true
+    });
+    prefsWidget.attach(labelLogout, 0, 4, 1, 1);
+
+    let toggleLogout = new Gtk.Switch({
+        active: this.settings.get_boolean ('remove-logout-button'),
+        halign: Gtk.Align.END,
+        visible: true
+    });
+    prefsWidget.attach(toggleLogout, 1, 4, 1, 1);
+
+    this.settings.bind(
+        'remove-logout-button',
+        toggleLogout,
+        'active',
+        Gio.SettingsBindFlags.DEFAULT
+    );
+
     /////////////////////////////////////////////////////////////////////////////  
-    
+
     let labelSeparator1 = new Gtk.Label({
         label: 'Remove Separator-1',
         halign: Gtk.Align.START,
         visible: true
     });
-    prefsWidget.attach(labelSeparator1, 0, 4, 1, 1);
+    prefsWidget.attach(labelSeparator1, 0, 5, 1, 1);
 
     let toggleSeparator1 = new Gtk.Switch({
         active: this.settings.get_boolean ('remove-separator-1'),
         halign: Gtk.Align.END,
         visible: true
     });
-    prefsWidget.attach(toggleSeparator1, 1, 4, 1, 1);
+    prefsWidget.attach(toggleSeparator1, 1, 5, 1, 1);
 
     this.settings.bind(
         'remove-separator-1',
@@ -120,22 +143,22 @@ function buildPrefsWidget() {
         'active',
         Gio.SettingsBindFlags.DEFAULT
     );
-    
+
     ///////////////////////////////////////////////////////////////////////////// 
-    
+
     let labelSeparator2 = new Gtk.Label({
         label: 'Remove Separator-2',
         halign: Gtk.Align.START,
         visible: true
     });
-    prefsWidget.attach(labelSeparator2, 0, 5, 1, 1);
+    prefsWidget.attach(labelSeparator2, 0, 6, 1, 1);
 
     let toggleSeparator2 = new Gtk.Switch({
         active: this.settings.get_boolean ('remove-separator-2'),
         halign: Gtk.Align.END,
         visible: true
     });
-    prefsWidget.attach(toggleSeparator2, 1, 5, 1, 1);
+    prefsWidget.attach(toggleSeparator2, 1, 6, 1, 1);
 
     this.settings.bind(
         'remove-separator-2',
@@ -143,16 +166,16 @@ function buildPrefsWidget() {
         'active',
         Gio.SettingsBindFlags.DEFAULT
     );
-    
+
     ///////////////////////////////////////////////////////////////////////////// 
-    
+
     let labelWarning = new Gtk.Label({
         label: '<b>' + 'Note: \nDo not turn on above keys, if you have changed "org.gnome.desktop.lockdown" keys \nrelated to above via gsettings or dconf-editor. You may force turn on but may have conflicts.' + '</b>',
         halign: Gtk.Align.CENTER,
         use_markup: true,
         visible: true
     });
-    prefsWidget.attach(labelWarning, 0, 6, 2, 1);
+    prefsWidget.attach(labelWarning, 0, 7, 2, 1);
 
     return prefsWidget;
 }
